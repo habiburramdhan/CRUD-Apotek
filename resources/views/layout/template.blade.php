@@ -17,10 +17,12 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                @if (Auth::check())
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Dashboard</a>
                   </li>
+                  @if (Auth::user()->role == "admin")
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       Obat
@@ -31,12 +33,23 @@
                       <li><a class="dropdown-item" href="{{route('medicine.stock')}}">Stok</a></li>
                     </ul>
                   </li>
+                  <a class="nav-link active" aria-current="page" href="/kelola">Kelola Akun</a>
+                </li>
+                @endif
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Pembelian</a>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Pembelian</a>
-                  </li>
+                </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/kelola">Kelola Akun</a>
-                  </li>
+                    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                        @csrf
+                        <button type="submit" class="nav-link" style="border: none; background: none; cursor: pointer;">Logout</button>
+                    </form>
+                </li>
+                
+                
+                  @endif
                 </ul>
               </div>
             </div>

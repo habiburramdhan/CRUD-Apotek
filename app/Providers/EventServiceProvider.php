@@ -2,37 +2,37 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered; // Mengimpor event Registered
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification; // Mengimpor listener untuk mengirim email verifikasi
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider; // Mengimpor kelas dasar untuk EventServiceProvider
+use Illuminate\Support\Facades\Event; // Mengimpor facade Event
 
 class EventServiceProvider extends ServiceProvider
 {
     /**
-     * The event to listener mappings for the application.
+     * Pemetaan event ke listener untuk aplikasi.
      *
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            SendEmailVerificationNotification::class, // Mendengarkan event Registered
         ],
     ];
 
     /**
-     * Register any events for your application.
+     * Mendaftarkan event untuk aplikasi Anda.
      */
     public function boot(): void
     {
-        //
+        // Tempat untuk menjalankan logika saat provider boot
     }
 
     /**
-     * Determine if events and listeners should be automatically discovered.
+     * Menentukan apakah event dan listener harus ditemukan secara otomatis.
      */
     public function shouldDiscoverEvents(): bool
     {
-        return false;
+        return false; // Menentukan bahwa penemuan otomatis dinonaktifkan
     }
 }

@@ -11,8 +11,9 @@
 |
 */
 
+// Membuat instance aplikasi Laravel
 $app = new Illuminate\Foundation\Application(
-    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
+    $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__) // Menentukan path dasar aplikasi
 );
 
 /*
@@ -26,19 +27,20 @@ $app = new Illuminate\Foundation\Application(
 |
 */
 
+// Mengikat antarmuka penting ke dalam kontainer
 $app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
+    Illuminate\Contracts\Http\Kernel::class, // Antarmuka untuk kernel HTTP
+    App\Http\Kernel::class // Kelas implementasi kernel HTTP
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    Illuminate\Contracts\Console\Kernel::class, // Antarmuka untuk kernel Console
+    App\Console\Kernel::class // Kelas implementasi kernel Console
 );
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    Illuminate\Contracts\Debug\ExceptionHandler::class, // Antarmuka untuk penanganan exception
+    App\Exceptions\Handler::class // Kelas implementasi penanganan exception
 );
 
 /*
@@ -52,4 +54,5 @@ $app->singleton(
 |
 */
 
+// Mengembalikan instance aplikasi
 return $app;
